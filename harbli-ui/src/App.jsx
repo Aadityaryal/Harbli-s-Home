@@ -1,7 +1,7 @@
 // App.jsx 
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Auth from './pages/Auth'
-// import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminDashboard from './pages/admin/AdminDashboard'
 // import AdminRoomDeviceManagement from './pages/admin/AdminRoomDeviceManagement'
 // import AdminUserManagement from './pages/admin/AdminUserManagement'
 import UserDashboard from './pages/user/UserDashboard'
@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Auth />} />
-        {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+        <Route path="/admin" element={<AdminDashboard />} />
         {/* <Route path="/admin/room-device-management" element={<AdminRoomDeviceManagement />} /> */}
         {/* <Route path="/admin/user-management" element={<AdminUserManagement />} /> */}
         <Route path="/dashboard" element={<UserDashboard />} />
