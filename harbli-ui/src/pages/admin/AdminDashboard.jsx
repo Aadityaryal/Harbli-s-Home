@@ -7,7 +7,7 @@ import {
   FaSignOutAlt, FaPlus, FaMinus, FaChevronRight
 } from 'react-icons/fa';
 import { MdDashboard, MdDevices, MdRoom } from 'react-icons/md';
-import { Line, Bar } from '@nivo/line';
+import { Line } from '@nivo/line';
 import CountUp from 'react-countup';
 import '../../styles/AdminDashboard.css';
 
@@ -17,7 +17,7 @@ const AdminDashboard = () => {
   const [dashboardData, setDashboardData] = useState({
     totalUsers: 0,
     activeDevices: 0,
-    roomCount: 0,
+    roomCount: 0,  
     recentActivity: []
   });
   const [usageData, setUsageData] = useState([]);
