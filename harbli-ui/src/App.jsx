@@ -6,6 +6,7 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminUserManagement from './pages/admin/AdminUserManagement'
 import UserDashboard from './pages/user/UserDashboard'
 import UserRoomDeviceManagement from './pages/user/UserRoomDeviceManagement'
+import UserSettings from './pages/user/UserSettings'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/admin/user-management" element={<AdminUserManagement />} />
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/user/room-device-management" element={<UserRoomDeviceManagement />} />
+        <Route path="/user/settings" element={<UserSettings />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
