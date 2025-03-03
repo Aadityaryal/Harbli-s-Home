@@ -1,14 +1,17 @@
 // Login.jsx 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Auth.css';
+import api from '../utils/api';
 
 const Auth = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
+    name: '',
     rememberMe: false
   });
   const [formErrors, setFormErrors] = useState({});
@@ -56,18 +59,41 @@ const Auth = () => {
       setAuthStatus({ type: '', message: '' });
 
       try {
-        // Simulated API call
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        const endpoint = isLogin ? '/auth/login' : '/auth/register';
+        const payload = isLogin 
+          ? { email: formData.email, password: formData.password }
+          : { email: formData.email, password: formData.password, name: formData.name };
+
+        const response = await api.post(endpoint, payload);
         
+        // Store token in localStorage if rememberMe is checked, otherwise in sessionStorage
+        const storage = formData.rememberMe ? localStorage : sessionStorage;
+        storage.setItem('token', response.data.token);
+        storage.setItem('user', JSON.stringify(response.data.user));
+
         setAuthStatus({
           type: 'success',
           message: isLogin ? 'Login successful! Redirecting...' : 'Registration successful! Please login.'
         });
+
+        if (isLogin) {
+          // Redirect based on user role
+          const role = response.data.user.role;
+          setTimeout(() => {
+            navigate(role === 'admin' ? '/admin' : '/dashboard');
+          }, 1500);
+        } else {
+          // After registration, switch to login
+          setTimeout(() => {
+            setIsLogin(true);
+          }, 1500);
+        }
         
       } catch (error) {
         setAuthStatus({
           type: 'error',
-          message: isLogin ? 'Login failed. Please check your credentials.' : 'Registration failed. Please try again.'
+          message: error.response?.data?.message || 
+            (isLogin ? 'Login failed. Please check your credentials.' : 'Registration failed. Please try again.')
         });
       } finally {
         setIsLoading(false);
@@ -81,6 +107,7 @@ const Auth = () => {
       email: '',
       password: '',
       confirmPassword: '',
+      name: '',
       rememberMe: false
     });
     setFormErrors({});
@@ -180,6 +207,24 @@ const Auth = () => {
           )}
           
           <form onSubmit={handleSubmit} noValidate>
+            {!isLogin && (
+              <div className={`form-group ${formErrors.name ? 'error' : ''}`}>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                  className={formErrors.name ? 'error' : ''}
+                />
+                {formErrors.name && (
+                  <span className="error-message">{formErrors.name}</span>
+                )}
+              </div>
+            )}
+
             <div className={`form-group ${formErrors.email ? 'error' : ''}`}>
               <label htmlFor="email">Email</label>
               <input
@@ -253,26 +298,29 @@ const Auth = () => {
 
             <button 
               type="submit" 
-              className={`auth-button ${isLoading ? 'loading' : ''} ${authStatus.type}`}
+              className={`auth-button ${isLoading ? 'loading' : ''}`}
               disabled={isLoading}
             >
               {isLoading ? (
-                <span className="button-content">
-                  <span className="spinner"></span>
-                  {isLogin ? 'Signing in...' : 'Creating account...'}
-                </span>
+                <span className="loading-spinner"></span>
               ) : (
-                isLogin ? 'Sign In' : 'Create Account'
+                isLogin ? 'Sign In' : 'Sign Up'
               )}
             </button>
           </form>
 
-          <p className="auth-toggle">
-            {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button onClick={toggleAuthMode} className="auth-toggle-button">
-              {isLogin ? 'Register here' : 'Sign in'}
-            </button>
-          </p>
+          <div className="auth-footer">
+            <p>
+              {isLogin ? "Don't have an account?" : "Already have an account?"}
+              <button 
+                type="button"
+                className="toggle-auth-mode" 
+                onClick={toggleAuthMode}
+              >
+                {isLogin ? 'Sign Up' : 'Sign In'}
+              </button>
+            </p>
+          </div>
         </div>
       </div>
     </div>
