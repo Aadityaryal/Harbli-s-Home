@@ -1,194 +1,199 @@
 .user-settings {
-  padding: 1rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.settings-header {
+.user-settings-header {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
-.settings-header h1 {
-  color: var(--primary-color);
-  font-size: 2rem;
-  margin: 0;
+.user-settings-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
-.settings-header p {
+.user-settings-header p {
   color: var(--text-secondary);
   margin-top: 0.5rem;
 }
 
-.settings-container {
-  background: var(--secondary-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  overflow: hidden;
-  display: flex;
-  min-height: 600px;
-}
-
-/* Tabs */
-.settings-tabs {
-  width: 250px;
-  background: #f8f9fa;
-  padding: 1.5rem 0;
-  border-right: 1px solid #eee;
-}
-
-.tab-button {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all var(--transition-speed);
-  text-align: left;
-}
-
-.tab-button svg {
-  font-size: 1.2rem;
-}
-
-.tab-button:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--primary-color);
-}
-
-.tab-button.active {
-  background: var(--primary-color);
-  color: var(--secondary-color);
-}
-
-/* Content */
-.settings-content {
-  flex: 1;
+.user-settings-container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
 }
 
-.settings-form {
+/* Tabs */
+.user-settings-tabs {
+  border-right: 1px solid #E0E0E0;
+  padding-right: 1.5rem;
+}
+
+.user-settings-tab-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  background: none;
+  color: #666;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.user-settings-tab-button:hover {
+  background: #F5F5F5;
+  color: #2196F3;
+}
+
+.user-settings-tab-button.user-settings-active {
+  background: #E3F2FD;
+  color: #1976D2;
+  font-weight: 500;
+}
+
+.user-settings-tab-button svg {
+  font-size: 1.2rem;
+}
+
+/* Content */
+.user-settings-content {
+  padding: 1rem 0;
+}
+
+.user-settings-form {
   max-width: 600px;
 }
 
-.profile-image-section {
-  display: flex;
-  justify-content: center;
+.user-settings-profile-image-section {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
-.profile-image {
+.user-settings-profile-image {
   position: relative;
   width: 150px;
   height: 150px;
+  margin: 0 auto;
 }
 
-.profile-image img {
+.user-settings-profile-image img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--primary-color);
 }
 
-.image-upload {
+.user-settings-image-upload {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: var(--primary-color);
-  color: var(--secondary-color);
+  background: #2196F3;
+  color: white;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: background-color var(--transition-speed);
+  transition: background 0.2s ease;
 }
 
-.image-upload:hover {
-  background: var(--primary-light);
+.user-settings-image-upload:hover {
+  background: #1976D2;
 }
 
-.form-group {
+.user-settings-form-group {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.user-settings-form-group label {
   display: block;
-  color: var(--text-primary);
   margin-bottom: 0.5rem;
+  color: #333;
   font-weight: 500;
 }
 
-.form-group input {
+.user-settings-form-group input,
+.user-settings-form-group textarea,
+.user-settings-form-group select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: var(--border-radius);
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color var(--transition-speed);
+  color: #333;
+  transition: border-color 0.2s ease;
 }
 
-.form-group input:focus {
+.user-settings-form-group input:focus,
+.user-settings-form-group textarea:focus,
+.user-settings-form-group select:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #2196F3;
 }
 
-.save-button {
-  background: var(--primary-color);
-  color: var(--secondary-color);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius);
-  font-size: 1rem;
-  cursor: pointer;
+.user-settings-save-button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: background-color var(--transition-speed);
+  padding: 0.75rem 1.5rem;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.save-button:hover {
-  background: var(--primary-light);
+.user-settings-save-button:hover {
+  background: #1976D2;
 }
 
 /* Preferences */
-.settings-section {
+.user-settings-section {
   max-width: 600px;
 }
 
-.settings-section h2 {
-  color: var(--primary-color);
+.user-settings-section h2 {
+  font-size: 1.8rem;
+  color: #333;
   margin-bottom: 1.5rem;
 }
 
-.preferences-list {
+.user-settings-preferences-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.preference-item {
+.user-settings-preference-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: #f8f9fa;
-  border-radius: var(--border-radius);
-  transition: background-color var(--transition-speed);
+  background: #F5F5F5;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.preference-item:hover {
-  background: #f0f0f0;
-}
-
-.preference-item span {
-  color: var(--text-primary);
+.user-settings-preference-item span {
+  color: #333;
   font-weight: 500;
 }
 
-.preference-item input[type="checkbox"] {
+.user-settings-preference-item input[type="checkbox"] {
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -196,52 +201,39 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .settings-container {
-    flex-direction: column;
+  .user-settings-container {
+    grid-template-columns: 1fr;
   }
 
-  .settings-tabs {
-    width: 100%;
-    padding: 1rem;
+  .user-settings-tabs {
     border-right: none;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    overflow-x: auto;
+    border-bottom: 1px solid #E0E0E0;
+    padding-right: 0;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 
-  .tab-button {
+  .user-settings-tab-button {
     padding: 0.75rem;
-    flex-direction: column;
-    text-align: center;
-    min-width: 100px;
   }
 
-  .settings-content {
-    padding: 1rem;
-  }
-
-  .profile-image {
-    width: 120px;
-    height: 120px;
-  }
-
-  .image-upload {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+  .user-settings-form,
+  .user-settings-section {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .settings-header h1 {
+  .user-settings-header h1 {
     font-size: 1.5rem;
   }
 
-  .tab-button {
+  .user-settings-tab-button {
     min-width: 80px;
     font-size: 0.9rem;
   }
 
-  .form-group input {
+  .user-settings-form-group input {
     font-size: 16px; /* Prevent zoom on mobile */
   }
 } 

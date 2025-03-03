@@ -97,22 +97,22 @@ const UserRoomDeviceManagement = () => {
 
   return (
     <div className="user-room-device-management">
-      <header className="management-header">
-        <div className="header-content">
+      <header className="user-room-device-management-header">
+        <div className="user-room-device-management-header-content">
           <h1>Manage Rooms & Devices</h1>
-          <nav className="breadcrumb">
+          <nav className="user-room-device-management-breadcrumb">
             <span>Home</span> / <span>Management</span>
           </nav>
         </div>
-        <div className="header-actions">
+        <div className="user-room-device-management-header-actions">
           <button 
-            className="add-button"
+            className="user-room-device-management-add-button"
             onClick={() => handleOpenModal('add', 'room')}
           >
             <FaPlus /> Add Room
           </button>
           <button 
-            className="add-button"
+            className="user-room-device-management-add-button"
             onClick={() => handleOpenModal('add', 'device')}
           >
             <FaPlus /> Add Device
@@ -120,30 +120,30 @@ const UserRoomDeviceManagement = () => {
         </div>
       </header>
 
-      <main className="management-content">
-        <section className="rooms-section">
+      <main className="user-room-device-management-content">
+        <section className="user-room-device-management-rooms-section">
           <h2>Rooms</h2>
-          <div className="items-grid">
+          <div className="user-room-device-management-items-grid">
             {items.rooms.map(room => (
-              <article key={room.id} className="item-card">
-                <div className="card-header">
-                  <MdRoom className="card-icon" />
+              <article key={room.id} className="user-room-device-management-item-card">
+                <div className="user-room-device-management-card-header">
+                  <MdRoom className="user-room-device-management-card-icon" />
                   <h3>{room.name}</h3>
                 </div>
-                <div className="card-content">
+                <div className="user-room-device-management-card-content">
                   <p>{room.description}</p>
-                  <span className={`status-badge ${room.status}`}>{room.status}</span>
+                  <span className={`user-room-device-management-status-badge ${room.status}`}>{room.status}</span>
                 </div>
-                <div className="card-actions">
+                <div className="user-room-device-management-card-actions">
                   <button 
-                    className="edit-button"
+                    className="user-room-device-management-edit-button"
                     onClick={() => handleOpenModal('edit', 'room', room)}
                     title="Edit Room"
                   >
                     <FaEdit />
                   </button>
                   <button 
-                    className="delete-button"
+                    className="user-room-device-management-delete-button"
                     onClick={() => handleDelete(room)}
                     title="Delete Room"
                   >
@@ -155,29 +155,29 @@ const UserRoomDeviceManagement = () => {
           </div>
         </section>
 
-        <section className="devices-section">
+        <section className="user-room-device-management-devices-section">
           <h2>Devices</h2>
-          <div className="items-grid">
+          <div className="user-room-device-management-items-grid">
             {items.devices.map(device => (
-              <article key={device.id} className="item-card">
-                <div className="card-header">
-                  <MdDevices className="card-icon" />
+              <article key={device.id} className="user-room-device-management-item-card">
+                <div className="user-room-device-management-card-header">
+                  <MdDevices className="user-room-device-management-card-icon" />
                   <h3>{device.name}</h3>
                 </div>
-                <div className="card-content">
+                <div className="user-room-device-management-card-content">
                   <p>{device.description}</p>
-                  <span className={`status-badge ${device.status}`}>{device.status}</span>
+                  <span className={`user-room-device-management-status-badge ${device.status}`}>{device.status}</span>
                 </div>
-                <div className="card-actions">
+                <div className="user-room-device-management-card-actions">
                   <button 
-                    className="edit-button"
+                    className="user-room-device-management-edit-button"
                     onClick={() => handleOpenModal('edit', 'device', device)}
                     title="Edit Device"
                   >
                     <FaEdit />
                   </button>
                   <button 
-                    className="delete-button"
+                    className="user-room-device-management-delete-button"
                     onClick={() => handleDelete(device)}
                     title="Delete Device"
                   >
@@ -192,16 +192,16 @@ const UserRoomDeviceManagement = () => {
 
       {/* Add/Edit Modal */}
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <div className="modal-header">
+        <div className="user-room-device-management-modal-overlay">
+          <div className="user-room-device-management-modal">
+            <div className="user-room-device-management-modal-header">
               <h2>{modalType === 'add' ? `Add New ${modalItemType}` : `Edit ${modalItemType}`}</h2>
-              <button className="close-button" onClick={handleCloseModal}>
+              <button className="user-room-device-management-close-button" onClick={handleCloseModal}>
                 <FaTimes />
               </button>
             </div>
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
+              <div className="user-room-device-management-form-group">
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
@@ -212,7 +212,7 @@ const UserRoomDeviceManagement = () => {
                   required
                 />
               </div>
-              <div className="form-group">
+              <div className="user-room-device-management-form-group">
                 <label htmlFor="description">Description</label>
                 <textarea
                   id="description"
@@ -221,7 +221,7 @@ const UserRoomDeviceManagement = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="form-group">
+              <div className="user-room-device-management-form-group">
                 <label htmlFor="status">Status</label>
                 <select
                   id="status"
@@ -233,11 +233,11 @@ const UserRoomDeviceManagement = () => {
                   <option value="inactive">Inactive</option>
                 </select>
               </div>
-              <div className="modal-actions">
-                <button type="button" className="cancel-button" onClick={handleCloseModal}>
+              <div className="user-room-device-management-modal-actions">
+                <button type="button" className="user-room-device-management-cancel-button" onClick={handleCloseModal}>
                   Cancel
                 </button>
-                <button type="submit" className="submit-button">
+                <button type="submit" className="user-room-device-management-submit-button">
                   {modalType === 'add' ? 'Add' : 'Save Changes'}
                 </button>
               </div>
@@ -248,25 +248,30 @@ const UserRoomDeviceManagement = () => {
 
       {/* Delete Confirmation Dialog */}
       {isDeleteDialogOpen && (
-        <div className="modal-overlay">
-          <div className="modal delete-dialog">
-            <div className="modal-header">
+        <div className="user-room-device-management-modal-overlay">
+          <div className="user-room-device-management-modal">
+            <div className="user-room-device-management-modal-header">
               <h2>Confirm Delete</h2>
-              <button className="close-button" onClick={() => setIsDeleteDialogOpen(false)}>
+              <button className="user-room-device-management-close-button" onClick={() => setIsDeleteDialogOpen(false)}>
                 <FaTimes />
               </button>
             </div>
-            <div className="modal-content">
+            <div className="user-room-device-management-modal-content">
               <p>Are you sure you want to delete this {itemToDelete?.type}?</p>
-              <p>This action cannot be undone.</p>
-            </div>
-            <div className="modal-actions">
-              <button className="cancel-button" onClick={() => setIsDeleteDialogOpen(false)}>
-                Cancel
-              </button>
-              <button className="delete-button" onClick={confirmDelete}>
-                Delete
-              </button>
+              <div className="user-room-device-management-modal-actions">
+                <button 
+                  className="user-room-device-management-cancel-button"
+                  onClick={() => setIsDeleteDialogOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button 
+                  className="user-room-device-management-delete-button"
+                  onClick={confirmDelete}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>

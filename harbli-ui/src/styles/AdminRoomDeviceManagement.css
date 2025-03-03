@@ -568,4 +568,369 @@
   .form-group textarea {
     font-size: 16px; /* Prevent zoom on mobile */
   }
+}
+
+.admin-roomdevice-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--secondary-color);
+}
+
+.admin-roomdevice-header {
+  background: var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.admin-roomdevice-search-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-roomdevice-search-bar {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+
+.admin-roomdevice-search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed);
+}
+
+.admin-roomdevice-search-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.admin-roomdevice-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.admin-roomdevice-filter-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.admin-roomdevice-filter-select {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--secondary-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color var(--transition-speed);
+}
+
+.admin-roomdevice-filter-select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.admin-roomdevice-add-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.admin-roomdevice-add-button:hover {
+  background: var(--primary-dark);
+}
+
+.admin-roomdevice-content {
+  flex: 1;
+  padding: 0 1.5rem;
+}
+
+.admin-roomdevice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.admin-roomdevice-card {
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.admin-roomdevice-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.admin-roomdevice-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.admin-roomdevice-card-title {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1.2rem;
+}
+
+.admin-roomdevice-card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-roomdevice-action-button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+
+.admin-roomdevice-action-button.admin-roomdevice-edit-button:hover {
+  color: var(--primary-color);
+}
+
+.admin-roomdevice-action-button.admin-roomdevice-delete-button:hover {
+  color: var(--error-color);
+}
+
+.admin-roomdevice-card-content {
+  color: var(--text-muted);
+}
+
+.admin-roomdevice-card-description {
+  margin: 0 0 1rem 0;
+}
+
+.admin-roomdevice-card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.admin-roomdevice-detail-item {
+  color: var(--text-muted);
+}
+
+.admin-roomdevice-status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.admin-roomdevice-status-active,
+.admin-roomdevice-status-online {
+  background: var(--success-light);
+  color: var(--success-color);
+}
+
+.admin-roomdevice-status-inactive,
+.admin-roomdevice-status-offline {
+  background: var(--error-light);
+  color: var(--error-color);
+}
+
+/* Modal Styles */
+.admin-roomdevice-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.admin-roomdevice-modal {
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.admin-roomdevice-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.admin-roomdevice-modal-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.admin-roomdevice-modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color var(--transition-speed);
+}
+
+.admin-roomdevice-modal-close:hover {
+  color: var(--error-color);
+}
+
+.admin-roomdevice-modal-text {
+  color: var(--text-color);
+  margin: 0.5rem 0;
+}
+
+.admin-roomdevice-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-roomdevice-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-roomdevice-form-label {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.admin-roomdevice-form-input,
+.admin-roomdevice-form-select,
+.admin-roomdevice-form-textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed);
+}
+
+.admin-roomdevice-form-input:focus,
+.admin-roomdevice-form-select:focus,
+.admin-roomdevice-form-textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.admin-roomdevice-form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.admin-roomdevice-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.admin-roomdevice-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.admin-roomdevice-button-cancel {
+  background: var(--border-color);
+  color: var(--text-color);
+}
+
+.admin-roomdevice-button-cancel:hover {
+  background: var(--text-muted);
+}
+
+.admin-roomdevice-button-delete {
+  background: var(--error-color);
+  color: var(--secondary-color);
+}
+
+.admin-roomdevice-button-delete:hover {
+  background: var(--error-dark);
+}
+
+.admin-roomdevice-button-submit {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.admin-roomdevice-button-submit:hover {
+  background: var(--primary-dark);
+}
+
+.admin-roomdevice-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: var(--text-muted);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-roomdevice-search-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-roomdevice-search-bar {
+    min-width: 100%;
+  }
+
+  .admin-roomdevice-filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-roomdevice-content {
+    padding: 0 1rem;
+  }
+
+  .admin-roomdevice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-roomdevice-modal {
+    width: 95%;
+    padding: 1.5rem;
+  }
 } 

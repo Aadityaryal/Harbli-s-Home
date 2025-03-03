@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
-import { FaUsers, FaCog, FaHome, FaBars, FaBell, FaSignOutAlt } from 'react-icons/fa';
+import { FaUsers, FaCog, FaHome, FaBars, FaBell, FaSignOutAlt, FaChartLine } from 'react-icons/fa';
 import './AdminLayout.css';
 
 const AdminLayout = () => {
@@ -8,15 +8,16 @@ const AdminLayout = () => {
   const location = useLocation();
 
   const navigation = [
+    { path: '/admin', icon: <FaChartLine />, label: 'Dashboard' },
     { path: '/admin/user-management', icon: <FaUsers />, label: 'User Management' },
     { path: '/admin/room-device-management', icon: <FaCog />, label: 'Rooms & Devices' },
   ];
 
-  return (
+  return ( 
     <div className="admin-layout">
       <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-          <Link to="/admin/user-management" className="brand">
+          <Link to="/admin" className="brand">
             <FaHome /> Harbli Admin
           </Link>
           <button 

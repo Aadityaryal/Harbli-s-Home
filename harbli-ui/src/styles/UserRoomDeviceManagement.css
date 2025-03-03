@@ -16,188 +16,142 @@
 }
 
 .user-room-device-management {
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-navy), var(--secondary-navy));
   padding: 2rem;
-  color: var(--dark-gray);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Header Styles */
-.management-header {
-  background: var(--white);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
+.user-room-device-management-header {
   margin-bottom: 2rem;
-  box-shadow: var(--card-shadow);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
-.header-content h1 {
-  color: var(--primary-navy);
-  margin: 0;
-  font-size: 1.8rem;
+.user-room-device-management-header-content {
+  margin-bottom: 1rem;
 }
 
-.breadcrumb {
-  color: var(--dark-gray);
+.user-room-device-management-breadcrumb {
+  color: #64748b;
   font-size: 0.9rem;
-  margin-top: 0.5rem;
 }
 
-.breadcrumb span:last-child {
-  color: var(--primary-navy);
-  font-weight: 500;
-}
-
-.header-actions {
+.user-room-device-management-header-actions {
   display: flex;
   gap: 1rem;
 }
 
-/* Button Styles */
-.add-button {
-  background-color: var(--primary-navy);
-  color: var(--white);
-  border: none;
-  border-radius: var(--border-radius);
-  padding: 0.75rem 1.5rem;
+.user-room-device-management-add-button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #0284c7;
+  color: white;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all var(--transition-speed) ease;
+  font-size: 1rem;
+  transition: background 0.2s;
 }
 
-.add-button:hover {
-  transform: scale(1.05);
-  background-color: var(--secondary-navy);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.user-room-device-management-add-button:hover {
+  background: #0369a1;
 }
 
-/* Content Layout */
-.management-content {
+.user-room-device-management-content {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 2rem;
 }
 
-.rooms-section,
-.devices-section {
-  background: var(--white);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  box-shadow: var(--card-shadow);
+.user-room-device-management-rooms-section,
+.user-room-device-management-devices-section {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.rooms-section h2,
-.devices-section h2 {
-  color: var(--primary-navy);
-  margin-bottom: 1.5rem;
-}
-
-/* Grid Layout */
-.items-grid {
+.user-room-device-management-items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
-/* Card Styles */
-.item-card {
-  background: var(--white);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--medium-gray);
-  overflow: hidden;
-  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+.user-room-device-management-item-card {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
 }
 
-.item-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.card-header {
-  background: var(--primary-navy);
-  color: var(--white);
-  padding: 1rem;
+.user-room-device-management-card-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.card-icon {
+.user-room-device-management-card-icon {
   font-size: 1.5rem;
+  color: #0284c7;
 }
 
-.card-header h3 {
-  margin: 0;
-  font-size: 1.2rem;
+.user-room-device-management-card-content {
+  margin-bottom: 1rem;
 }
 
-.card-content {
-  padding: 1rem;
+.user-room-device-management-card-content p {
+  color: #64748b;
+  margin-bottom: 0.5rem;
 }
 
-.card-content p {
-  margin: 0 0 1rem 0;
-  color: var(--dark-gray);
-}
-
-.status-badge {
+.user-room-device-management-status-badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  background: #e0f2fe;
+  color: #0284c7;
 }
 
-.status-badge.active {
-  background-color: var(--success);
-  color: var(--white);
+.user-room-device-management-status-badge.inactive {
+  background: #fee2e2;
+  color: #ef4444;
 }
 
-.status-badge.inactive {
-  background-color: var(--warning);
-  color: var(--dark-gray);
-}
-
-.card-actions {
-  padding: 1rem;
-  border-top: 1px solid var(--medium-gray);
+.user-room-device-management-card-actions {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
-.edit-button,
-.delete-button {
-  background: none;
-  border: none;
+.user-room-device-management-edit-button,
+.user-room-device-management-delete-button {
   padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: var(--border-radius);
-  transition: all var(--transition-speed) ease;
+  transition: background 0.2s;
 }
 
-.edit-button {
-  color: var(--primary-navy);
+.user-room-device-management-edit-button {
+  background: #e0f2fe;
+  color: #0284c7;
 }
 
-.delete-button {
-  color: var(--danger);
+.user-room-device-management-edit-button:hover {
+  background: #bae6fd;
 }
 
-.edit-button:hover,
-.delete-button:hover {
-  transform: scale(1.1);
+.user-room-device-management-delete-button {
+  background: #fee2e2;
+  color: #ef4444;
 }
 
-/* Modal Styles */
-.modal-overlay {
+.user-room-device-management-delete-button:hover {
+  background: #fecaca;
+}
+
+.user-room-device-management-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -205,181 +159,123 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 1rem;
+  justify-content: center;
   z-index: 1000;
-  animation: fadeIn var(--transition-speed) ease;
 }
 
-.modal {
-  background: var(--white);
-  border-radius: var(--border-radius);
+.user-room-device-management-modal {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
   width: 100%;
   max-width: 500px;
-  animation: slideUp var(--transition-speed) ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.modal-header {
-  background: var(--primary-navy);
-  color: var(--white);
-  padding: 1rem;
+.user-room-device-management-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-.modal-header h2 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.close-button {
-  background: none;
-  border: none;
-  color: var(--white);
-  cursor: pointer;
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  transition: transform var(--transition-speed) ease;
-}
-
-.close-button:hover {
-  transform: scale(1.1);
-}
-
-.modal form {
-  padding: 1.5rem;
-}
-
-.form-group {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.user-room-device-management-close-button {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.user-room-device-management-close-button:hover {
+  color: #0f172a;
+}
+
+.user-room-device-management-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.user-room-device-management-form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--dark-gray);
-  font-weight: 500;
+  color: #475569;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+.user-room-device-management-form-group input,
+.user-room-device-management-form-group textarea,
+.user-room-device-management-form-group select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--medium-gray);
-  border-radius: var(--border-radius);
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
   font-size: 1rem;
-  transition: border-color var(--transition-speed) ease;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+.user-room-device-management-form-group input:focus,
+.user-room-device-management-form-group textarea:focus,
+.user-room-device-management-form-group select:focus {
   outline: none;
-  border-color: var(--primary-navy);
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
 }
 
-.modal-actions {
+.user-room-device-management-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
   margin-top: 2rem;
 }
 
-.submit-button,
-.cancel-button {
+.user-room-device-management-cancel-button,
+.user-room-device-management-submit-button {
   padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius);
-  font-weight: 500;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all var(--transition-speed) ease;
+  font-size: 1rem;
+  transition: background 0.2s;
 }
 
-.submit-button {
-  background: var(--primary-navy);
-  color: var(--white);
-  border: none;
+.user-room-device-management-cancel-button {
+  background: #f1f5f9;
+  color: #64748b;
 }
 
-.cancel-button {
-  background: var(--light-gray);
-  color: var(--dark-gray);
-  border: 1px solid var(--medium-gray);
+.user-room-device-management-cancel-button:hover {
+  background: #e2e8f0;
 }
 
-.submit-button:hover,
-.cancel-button:hover {
-  transform: scale(1.05);
+.user-room-device-management-submit-button {
+  background: #0284c7;
+  color: white;
 }
 
-/* Delete Dialog Specific Styles */
-.delete-dialog {
-  max-width: 400px;
+.user-room-device-management-submit-button:hover {
+  background: #0369a1;
 }
 
-.delete-dialog .modal-content {
-  padding: 1.5rem;
-  text-align: center;
+.user-room-device-management-modal-content {
+  margin-bottom: 1.5rem;
 }
 
-.delete-dialog .delete-button {
-  background: var(--danger);
-  color: var(--white);
-  border: none;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
   .user-room-device-management {
     padding: 1rem;
   }
 
-  .management-header {
-    padding: 1rem;
+  .user-room-device-management-header-actions {
+    flex-direction: column;
   }
 
-  .header-content h1 {
-    font-size: 1.5rem;
-  }
-
-  .header-actions {
-    width: 100%;
-    justify-content: stretch;
-  }
-
-  .add-button {
-    flex: 1;
-    justify-content: center;
-  }
-
-  .items-grid {
+  .user-room-device-management-items-grid {
     grid-template-columns: 1fr;
   }
 
-  .modal {
+  .user-room-device-management-modal {
     margin: 1rem;
-    max-height: calc(100vh - 2rem);
-    overflow-y: auto;
+    padding: 1.5rem;
   }
 }
 

@@ -12,7 +12,6 @@ import '../../styles/AdminRoomDeviceManagement.css';
 
 const AdminRoomDeviceManagement = () => {
   // State management
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [rooms, setRooms] = useState([]);
   const [devices, setDevices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -339,99 +338,258 @@ const AdminRoomDeviceManagement = () => {
   };
 
   return (
-    <div className="admin-management">
-      {/* Sidebar */}
-      <motion.aside
-        className={`sidebar ${isSidebarOpen ? 'open' : ''}`}
-        initial={{ x: -250 }}
-        animate={{ x: isSidebarOpen ? 0 : -250 }}
-        transition={{ type: 'spring', stiffness: 100 }}
-      >
-        <div className="sidebar-header">
-          <Link to="/admin" className="brand-link">
-            <FaHome /> Harbli's Home
-          </Link>
-          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="sidebar-toggle">
-            {isSidebarOpen ? <FaChevronLeft /> : <FaChevronRight />}
-          </button>
-        </div>
-
-        <nav className="sidebar-nav">
-          <Link to="/admin" className="nav-item">
-            <FaHome /> <span>Dashboard</span>
-          </Link>
-          <Link to="/admin/user-management" className="nav-item">
-            <FaUsers /> <span>User Management</span>
-          </Link>
-          <Link to="/admin/room-device-management" className="nav-item active">
-            <FaCog /> <span>Rooms & Devices</span>
-          </Link>
-          <Link to="/admin/analytics" className="nav-item">
-            <FaChartLine /> <span>Analytics</span>
-          </Link>
-        </nav>
-      </motion.aside>
-
-      {/* Main Content */}
-      <main className={`main-content ${isSidebarOpen ? 'sidebar-open' : ''}`}>
-        <header className="content-header">
-          <div className="header-left">
-            <button className="menu-toggle" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-              <FaBars />
-            </button>
-            <h1>Room & Device Management</h1>
+    <div className="admin-roomdevice-container">
+      <div className="admin-roomdevice-header">
+        <div className="admin-roomdevice-search-filter">
+          <div className="admin-roomdevice-search-bar">
+            <FaSearch className="admin-roomdevice-search-icon" />
+            <input
+              type="text"
+              placeholder="Search rooms or devices..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="admin-roomdevice-search-input"
+            />
           </div>
-          <div className="header-actions">
-            <button className="notification-button">
-              <FaBell />
-              <span className="notification-badge">3</span>
-            </button>
-            <button className="action-button" onClick={() => {}}>
-              <FaCog />
-            </button>
-            <button className="action-button">
-              <FaSignOutAlt />
+          <div className="admin-roomdevice-filter-controls">
+            <select
+              value={filterType}
+              onChange={(e) => setFilterType(e.target.value)}
+              className="admin-roomdevice-filter-select"
+            >
+              <option value="all">All Items</option>
+              <option value="rooms">Rooms Only</option>
+              <option value="devices">Devices Only</option>
+            </select>
+            <button className="admin-roomdevice-add-button" onClick={handleAdd}>
+              <FaPlus /> Add New
             </button>
           </div>
-        </header>
+        </div>
+      </div>
 
-        <div className="content-controls">
-          <div className="search-filter">
-            <div className="search-box">
-              <FaSearch />
-              <input
-                type="text"
-                placeholder="Search rooms and devices..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <div className="filter-controls">
-              <FaFilter />
-              <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
-                <option value="all">All Items</option>
-                <option value="rooms">Rooms Only</option>
-                <option value="devices">Devices Only</option>
-              </select>
-            </div>
+      <div className="admin-roomdevice-content">
+        {isLoading ? (
+          <div className="admin-roomdevice-loading">Loading...</div>
+        ) : (
+          <div className="admin-roomdevice-grid">
+            {filteredItems().map(item => (
+              <motion.div
+                key={item.id}
+                className="admin-roomdevice-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.03 }}
+              >
+                <div className="admin-roomdevice-card-header">
+                  <h3 className="admin-roomdevice-card-title">{item.name}</h3>
+                  <div className="admin-roomdevice-card-actions">
+                    <button
+                      className="admin-roomdevice-action-button admin-roomdevice-edit-button"
+                      onClick={() => handleEdit(item)}
+                      aria-label={`Edit ${item.type ? 'device' : 'room'}`}
+                    >
+                      <FaEdit />
+                    </button>
+                    <button
+                      className="admin-roomdevice-action-button admin-roomdevice-delete-button"
+                      onClick={() => handleDelete(item)}
+                      aria-label={`Delete ${item.type ? 'device' : 'room'}`}
+                    >
+                      <FaTrash />
+                    </button>
+                  </div>
+                </div>
+                <div className="admin-roomdevice-card-content">
+                  <p className="admin-roomdevice-card-description">{item.description}</p>
+                  <div className="admin-roomdevice-card-details">
+                    {item.type ? (
+                      <>
+                        <span className="admin-roomdevice-detail-item">Type: {item.type}</span>
+                        <span className={`admin-roomdevice-status admin-roomdevice-status-${item.status}`}>
+                          {item.status}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="admin-roomdevice-detail-item">Devices: {item.deviceCount}</span>
+                        <span className={`admin-roomdevice-status admin-roomdevice-status-${item.status}`}>
+                          {item.status}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <button className="add-button" onClick={handleAdd}>
-            <FaPlus /> Add New
-          </button>
-        </div>
+        )}
+      </div>
 
-        <div className="content-grid">
-          {isLoading ? (
-            <div className="loading-spinner">Loading...</div>
-          ) : (
-            filteredItems().map(item => renderCard(item))
-          )}
-        </div>
+      <AnimatePresence>
+        {(showAddModal || showEditModal || showDeleteModal) && (
+          <motion.div
+            className="admin-roomdevice-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="admin-roomdevice-modal"
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+            >
+              <div className="admin-roomdevice-modal-header">
+                <h2 className="admin-roomdevice-modal-title">
+                  {showAddModal ? 'Add' : showEditModal ? 'Edit' : 'Delete'} {formData.type === 'room' ? 'Room' : 'Device'}
+                </h2>
+                <button
+                  className="admin-roomdevice-modal-close"
+                  onClick={() => {
+                    setShowAddModal(false);
+                    setShowEditModal(false);
+                    setShowDeleteModal(false);
+                  }}
+                >
+                  <FaTimes />
+                </button>
+              </div>
 
-        <AnimatePresence>
-          {(showAddModal || showEditModal || showDeleteModal) && renderModal()}
-        </AnimatePresence>
-      </main>
+              {showDeleteModal ? (
+                <div className="admin-roomdevice-modal-content">
+                  <p className="admin-roomdevice-modal-text">
+                    Are you sure you want to delete this {selectedItem?.type ? 'device' : 'room'}?
+                  </p>
+                  <p className="admin-roomdevice-modal-text">This action cannot be undone.</p>
+                  <div className="admin-roomdevice-modal-actions">
+                    <button 
+                      className="admin-roomdevice-button admin-roomdevice-button-cancel" 
+                      onClick={() => setShowDeleteModal(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      className="admin-roomdevice-button admin-roomdevice-button-delete" 
+                      onClick={handleConfirmDelete}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="admin-roomdevice-form">
+                  <div className="admin-roomdevice-form-group">
+                    <label className="admin-roomdevice-form-label">Type</label>
+                    <select
+                      className="admin-roomdevice-form-select"
+                      value={formData.type}
+                      onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                    >
+                      <option value="room">Room</option>
+                      <option value="device">Device</option>
+                    </select>
+                  </div>
+                  
+                  <div className="admin-roomdevice-form-group">
+                    <label className="admin-roomdevice-form-label">Name</label>
+                    <input
+                      type="text"
+                      className="admin-roomdevice-form-input"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  <div className="admin-roomdevice-form-group">
+                    <label className="admin-roomdevice-form-label">Description</label>
+                    <textarea
+                      className="admin-roomdevice-form-textarea"
+                      value={formData.description}
+                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                      required
+                    />
+                  </div>
+
+                  {formData.type === 'device' && (
+                    <>
+                      <div className="admin-roomdevice-form-group">
+                        <label className="admin-roomdevice-form-label">Device Type</label>
+                        <select
+                          className="admin-roomdevice-form-select"
+                          value={formData.deviceType}
+                          onChange={(e) => setFormData({ ...formData, deviceType: e.target.value })}
+                          required
+                        >
+                          <option value="">Select Type</option>
+                          <option value="lighting">Lighting</option>
+                          <option value="climate">Climate Control</option>
+                          <option value="security">Security</option>
+                          <option value="entertainment">Entertainment</option>
+                        </select>
+                      </div>
+
+                      <div className="admin-roomdevice-form-group">
+                        <label className="admin-roomdevice-form-label">Assign to Room</label>
+                        <select
+                          className="admin-roomdevice-form-select"
+                          value={formData.roomId}
+                          onChange={(e) => setFormData({ ...formData, roomId: e.target.value })}
+                          required
+                        >
+                          <option value="">Select Room</option>
+                          {rooms.map(room => (
+                            <option key={room.id} value={room.id}>{room.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </>
+                  )}
+
+                  <div className="admin-roomdevice-form-group">
+                    <label className="admin-roomdevice-form-label">Status</label>
+                    <select
+                      className="admin-roomdevice-form-select"
+                      value={formData.status}
+                      onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                    >
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                      {formData.type === 'device' && (
+                        <>
+                          <option value="online">Online</option>
+                          <option value="offline">Offline</option>
+                        </>
+                      )}
+                    </select>
+                  </div>
+
+                  <div className="admin-roomdevice-modal-actions">
+                    <button 
+                      type="button" 
+                      className="admin-roomdevice-button admin-roomdevice-button-cancel"
+                      onClick={() => {
+                        setShowAddModal(false);
+                        setShowEditModal(false);
+                      }}
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      type="submit" 
+                      className="admin-roomdevice-button admin-roomdevice-button-submit"
+                    >
+                      {showAddModal ? 'Add' : 'Edit'}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

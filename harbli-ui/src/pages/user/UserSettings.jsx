@@ -79,17 +79,17 @@ const UserSettings = () => {
 
   return (
     <div className="user-settings">
-      <div className="settings-header">
+      <div className="user-settings-header">
         <h1>Settings</h1>
         <p>Manage your account settings and preferences</p>
       </div>
 
-      <div className="settings-container">
-        <div className="settings-tabs">
+      <div className="user-settings-container">
+        <div className="user-settings-tabs">
           {tabs.map(tab => (
             <button
               key={tab.id}
-              className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
+              className={`user-settings-tab-button ${activeTab === tab.id ? 'user-settings-active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
             >
               {tab.icon}
@@ -98,16 +98,16 @@ const UserSettings = () => {
           ))}
         </div>
 
-        <div className="settings-content">
+        <div className="user-settings-content">
           {activeTab === 'profile' && (
-            <form onSubmit={handleProfileSubmit} className="settings-form">
-              <div className="profile-image-section">
-                <div className="profile-image">
+            <form onSubmit={handleProfileSubmit} className="user-settings-form">
+              <div className="user-settings-profile-image-section">
+                <div className="user-settings-profile-image">
                   <img
                     src={profileImage || userData.profilePicture || 'https://via.placeholder.com/150'}
                     alt={userData.name}
                   />
-                  <label className="image-upload">
+                  <label className="user-settings-image-upload">
                     <input
                       type="file"
                       accept="image/*"
@@ -119,7 +119,7 @@ const UserSettings = () => {
                 </div>
               </div>
 
-              <div className="form-group">
+              <div className="user-settings-form-group">
                 <label>Name</label>
                 <input
                   type="text"
@@ -130,7 +130,7 @@ const UserSettings = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="user-settings-form-group">
                 <label>Email</label>
                 <input
                   type="email"
@@ -141,17 +141,17 @@ const UserSettings = () => {
                 />
               </div>
 
-              <button type="submit" className="save-button">
+              <button type="submit" className="user-settings-save-button">
                 <FaSave /> Save Changes
               </button>
             </form>
           )}
 
           {activeTab === 'notifications' && (
-            <div className="settings-section">
+            <div className="user-settings-section">
               <h2>Notification Preferences</h2>
-              <div className="preferences-list">
-                <label className="preference-item">
+              <div className="user-settings-preferences-list">
+                <label className="user-settings-preference-item">
                   <span>Email Notifications</span>
                   <input
                     type="checkbox"
@@ -159,7 +159,7 @@ const UserSettings = () => {
                     onChange={() => handleNotificationChange('email')}
                   />
                 </label>
-                <label className="preference-item">
+                <label className="user-settings-preference-item">
                   <span>SMS Notifications</span>
                   <input
                     type="checkbox"
@@ -167,7 +167,7 @@ const UserSettings = () => {
                     onChange={() => handleNotificationChange('sms')}
                   />
                 </label>
-                <label className="preference-item">
+                <label className="user-settings-preference-item">
                   <span>Device Updates</span>
                   <input
                     type="checkbox"
@@ -175,7 +175,7 @@ const UserSettings = () => {
                     onChange={() => handleNotificationChange('deviceUpdates')}
                   />
                 </label>
-                <label className="preference-item">
+                <label className="user-settings-preference-item">
                   <span>Weekly Reports</span>
                   <input
                     type="checkbox"
@@ -188,10 +188,10 @@ const UserSettings = () => {
           )}
 
           {activeTab === 'appearance' && (
-            <div className="settings-section">
+            <div className="user-settings-section">
               <h2>Appearance Settings</h2>
-              <div className="preferences-list">
-                <label className="preference-item">
+              <div className="user-settings-preferences-list">
+                <label className="user-settings-preference-item">
                   <span>Dark Mode</span>
                   <input
                     type="checkbox"
@@ -204,9 +204,9 @@ const UserSettings = () => {
           )}
 
           {activeTab === 'security' && (
-            <form onSubmit={handlePasswordSubmit} className="settings-form">
+            <form onSubmit={handlePasswordSubmit} className="user-settings-form">
               <h2>Change Password</h2>
-              <div className="form-group">
+              <div className="user-settings-form-group">
                 <label>Current Password</label>
                 <input
                   type="password"
@@ -217,7 +217,7 @@ const UserSettings = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="user-settings-form-group">
                 <label>New Password</label>
                 <input
                   type="password"
@@ -228,7 +228,7 @@ const UserSettings = () => {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="user-settings-form-group">
                 <label>Confirm New Password</label>
                 <input
                   type="password"
@@ -239,7 +239,7 @@ const UserSettings = () => {
                 />
               </div>
 
-              <button type="submit" className="save-button">
+              <button type="submit" className="user-settings-save-button">
                 <FaSave /> Update Password
               </button>
             </form>
